@@ -12,7 +12,7 @@ export class Triangle implements Figure {
     public c: number,
   ) {
     if (this.a <= 0 || this.b <= 0 || this.c <= 0) {
-      throw new Error('your error message');
+      throw new Error('Side lengths must be positive numbers');
     }
 
     const arrOfSides = [a, b, c];
@@ -22,7 +22,10 @@ export class Triangle implements Figure {
       .reduce((acc, currentValue) => acc + currentValue);
 
     if (maxSide >= smallerSidesSum) {
-      throw new Error('your error message');
+      throw new Error(
+        // eslint-disable-next-line max-len
+        'The sum of the lengths of any two sides must be greater than the length of the third side.',
+      );
     }
   }
 
@@ -35,9 +38,10 @@ export class Triangle implements Figure {
 
     const p = (a + b + c) / 2;
 
-    const area = p * (p - a) * (p - b) * (p - c);
+    const area =
+      Math.trunc(Math.sqrt(p * (p - a) * (p - b) * (p - c)) * 100) / 100;
 
-    return Math.trunc(Math.sqrt(area) * 100) / 100;
+    return area;
   }
 }
 
@@ -47,7 +51,7 @@ export class Circle implements Figure {
     public r: number,
   ) {
     if (this.r <= 0) {
-      throw new Error('your error message');
+      throw new Error('Radius must be a positive number');
     }
   }
 
@@ -65,7 +69,7 @@ export class Rectangle implements Figure {
     public b: number,
   ) {
     if (this.a <= 0 || this.b <= 0) {
-      throw new Error('your error message');
+      throw new Error('Side lengths must be positive numbers.');
     }
   }
 
